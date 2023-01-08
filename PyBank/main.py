@@ -7,9 +7,9 @@ import csv
 
 # Set path for file
 
-csvpath = os.path.join('Resources', 'budget_data.csv') 
+csvpath = os.path.join('.', 'Resources', 'budget_data.csv') 
 
-with open(csvpath, encoding='utf8') as csvfile:
+with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
     # Setting initial value of the counter to zero
@@ -26,26 +26,11 @@ with open(csvpath, encoding='utf8') as csvfile:
     print("----------------------------")  
     print("Total Months: ", month_count)
 
-
-   
-   
-    # Loop through looking for the video
-    #for row in csvreader:
-        #if row[0] == book:
-           # print(row[0] + " was published by " + row[8] + " in " + row[9])
-
-            # Set variable to confirm we have found the video
-           # found = True
-
-
-    # If the book is never found, alert the user
-    #if found is False:
-        #print("Sorry about this, we don't seem to have what you are looking for!")
-
-       # with open(csvpath) as csvfile:
-
-   
-
-
-#References:
-#https://www.geeksforgeeks.org/how-to-count-the-number-of-lines-in-a-csv-file-in-python/?ref=gcse
+y1=52
+x = 0
+def net_profit_losses(csvreader):
+    row = int(csvreader[1])
+    for row in csvreader:
+        x += row
+    return x
+print(x)
