@@ -2,35 +2,32 @@
 import os
 import csv
 
-###Prompt user for title lookup
-###book = input("What title are you looking for? ")
-
 # Set path for file
-
 csvpath = os.path.join('.', 'Resources', 'budget_data.csv') 
 
-with open(csvpath) as csvfile:
+with open(csvpath, encoding='utf8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
-
-    # Setting initial value of the counter to zero
-    month_count = 0
-       
-    # Skip the header row
-    csv_header = next(csvreader)
-  
+    
     # Read each row of data after the header
+    csv_header = next(csvreader)
+    
+    # Setting initial value of the counter or total to zero
+    month_count = 0
+    total = 0   
+    
     for row in csvreader:
         month_count += 1
-
+        total += int(row[1])
+    
     print("Financial Analysis")  
     print("----------------------------")  
     print("Total Months: ", month_count)
+    print(f"Total: ${total}")
+    
+    
+    
+   
 
-y1=52
-x = 0
-def net_profit_losses(csvreader):
-    row = int(csvreader[1])
-    for row in csvreader:
-        x += row
-    return x
-print(x)
+    
+
+    
