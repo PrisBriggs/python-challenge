@@ -51,28 +51,26 @@ with open(csvpath, encoding='utf8') as csvfile:
 
     print("Financial Analysis")  
     print("----------------------------")  
-    print("Total Months: ", month_count)
+    print("Total Months:", month_count)
     print(f"Total: ${total_prof_loss}")
     print(f"Average Change: ${round(average(list_change_prof_loss), 2)}")
     print(f"Greatest Increase in Profits: {date[imaximum + 1]} (${(maximum)})")
     print(f"Greatest Decrease in Profits: {date[iminimum + 1]} (${(minimum)})")
     
-    # Set variable for output file
-    output_file = os.path.join("budget_data_analysis.txt")
-
-    #  Open the output file
-    with open(output_file, "w") as datafile:
-        writer = csv.writer(datafile)
-
-        writer.writeline("Financial Analysis")/n
-        writer.writeline("----------------------------")
-        writer.writeline("Total Months: ", month_count)
-        writer.writeline(f"Total: ${total_prof_loss}")
-        writer.writeline(f"Average Change: ${round(average(list_change_prof_loss), 2)}")
-        writer.writeline(f"Greatest Increase in Profits: {date[imaximum + 1]} (${(maximum)})")
-        writer.writeline(f"Greatest Decrease in Profits: {date[iminimum + 1]} (${(minimum)})")
+    # Set variable for and open the output file
+    
+    with open("analysis/budget_data_analysis_final.txt", "w") as file1:
+        file1.write("Financial Analysis \n")
+        file1.write(f"---------------------------- \n")
+        file1.write(f"Total Months: {month_count} \n")
+        file1.write(f"Total: ${total_prof_loss} \n")
+        file1.write(f"Average Change: ${round(average(list_change_prof_loss), 2)} \n")
+        file1.write(f"Greatest Increase in Profits: {date[imaximum + 1]} (${(maximum)}) \n")
+        file1.write(f"Greatest Decrease in Profits: {date[iminimum + 1]} (${(minimum)}) \n")
     
     
-
-    #Reference
+    #References
+    #MAX function in Python
     #https://www.geeksforgeeks.org/python-max-function/?ref=gcse
+    #how to write in a file with Python (website in Portuguese (Brazil))
+    #https://www.freecodecamp.org/portuguese/news/como-escrever-em-um-arquivo-em-python-open-read-append-e-outras-funcoes-de-manipulacao-explicadas/
