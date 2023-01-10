@@ -82,6 +82,6 @@ PyPoll
     https://stackoverflow.com/questions/45707721/how-does-the-in-and-not-in-statement-work-in-python
 
 
-All the files, scripts and information for this homework is found in the GitHub's repository on:
+All the files, scripts and information for this homework are found in the GitHub's repository on:
 
 https://github.com/PrisBriggs/python-challenge
