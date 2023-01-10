@@ -1,26 +1,29 @@
-# Import Modules
+# Importting Modules
 import os
 import csv
 
-# Set path for file
-csvpath = os.path.join('.', 'Resources', 'election_data_test.csv') 
+# Setting path for file
+csvpath = os.path.join('.', 'Resources', 'election_data.csv') 
 
-# Lists to store data
+# Setting initial values of the counters to zero and setting up lists to store data
 candidates_list = []
 candidates_votes = []
 candidates_percents = []
 vote_count = 0
 cand1_vcount = 0
 cand2_vcount = 0
-cand3_vcount = 0
-poll_results = {}
+cand3_vcount = 0  
 
+# Opening CSV file and storing it into an object
 with open(csvpath, encoding='utf8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     
-    # Read each row of data after the header
+    # Storing and skipping the header row in order to read each row of data after the header
     csv_header = next(csvreader)
-    
+
+    # Calculating the total number of votes  
+    # Identifying names of each candidate and appending them to a designated list
+    # Calculating amount of votes for each candidate
     for row in csvreader:
         vote_count += 1
         if row[2] not in candidates_list:
@@ -32,26 +35,31 @@ with open(csvpath, encoding='utf8') as csvfile:
         elif row[2] == candidates_list[2]:
             cand3_vcount += 1      
         
-
+# Appending number of votes for each candidate to a designated list
 candidates_votes.append(cand1_vcount)
 candidates_votes.append(cand2_vcount)
 candidates_votes.append(cand3_vcount)
 
+# Calculating percentage of votes for each candidate
 percent1 = round(int(cand1_vcount) / int(vote_count) * 100, 3)
 percent2 = round(int(cand2_vcount) / int(vote_count) * 100, 3)
 percent3 = round(int(cand3_vcount) / int(vote_count) * 100, 3)
-   
+
+# Appending percentage of votes for each candidate to a designated list   
 candidates_percents.append(percent1)
 candidates_percents.append(percent2)
 candidates_percents.append(percent3)
 
+# Identifying the value that represents the biggest amount of votes inside the correspondent list
 winner = max(candidates_votes)
 
+# Identifying the winner by comparing indexes of the biggest amount of votes with the candidates names' indexes
 for vote in candidates_votes:
         if vote == winner:
-            iwinner = candidates_votes.index(winner)
+            i_winner = candidates_votes.index(winner)
 
 
+# Printing results to terminal
 print("Election Results")  
 print("-------------------------")  
 print("Total Votes:", vote_count)
@@ -60,11 +68,12 @@ print(f"{candidates_list[0]}: {(percent1)}% ({(cand1_vcount)})")
 print(f"{candidates_list[1]}: {(percent2)}% ({(cand2_vcount)})")
 print(f"{candidates_list[2]}: {(percent3)}% ({(cand3_vcount)})")
 print("-------------------------")  
-print(f"Winner: {candidates_list[iwinner]}")
+print(f"Winner: {candidates_list[i_winner]}")
 print("-------------------------")  
 
-    #Set variable for and open the output file
-    
+
+# Creating and opening the TXT file in the designated location and storing it into an object
+# Writing results to TXT file    
 with open("analysis/poll_analysis_final.txt", "w") as file2:
     file2.write("Election Results \n")
     file2.write(f"------------------------- \n")
@@ -74,12 +83,5 @@ with open("analysis/poll_analysis_final.txt", "w") as file2:
     file2.write(f"{candidates_list[1]}: {(percent2)}% ({(cand2_vcount)}) \n")
     file2.write(f"{candidates_list[2]}: {(percent3)}% ({(cand3_vcount)}) \n")
     file2.write(f"------------------------- \n")
-    file2.write(f"Winner: {candidates_list[iwinner]} \n")
-    file2.write("-------------------------")  
-                 
-        
-    #References
-    #MAX function in Python
-    #https://www.geeksforgeeks.org/python-max-function/?ref=gcse
-    #how to write in a file with Python (website in Portuguese (Brazil))
-    #https://www.freecodecamp.org/portuguese/news/como-escrever-em-um-arquivo-em-python-open-read-append-e-outras-funcoes-de-manipulacao-explicadas/
+    file2.write(f"Winner: {candidates_list[i_winner]} \n")
+    file2.write("-------------------------")     
